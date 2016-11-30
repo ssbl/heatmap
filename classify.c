@@ -1,9 +1,12 @@
 #include <dirent.h>
+#include <limits.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <time.h>
+#include <unistd.h>
 
 #include "classify.h"
 
@@ -18,12 +21,15 @@ ref_most_recent(const char *dirname)
 
     time_t latest;
     time_t diff;
+    char cwd[PATH_MAX];
 
     if ((dirp = opendir(dirname)) == NULL) {
         perror("opendir");
         return;
     }
 
+    getcwd(cwd, sizeof cwd);
+    chdir(dirname);
     while ((dir = readdir(dirp)) != NULL) {
         if (stat(dir->d_name, &buf) == -1)
             continue;
@@ -56,6 +62,9 @@ ref_most_recent(const char *dirname)
         else
             printf("\e[94m%s\e[39m\n", dir->d_name); /* light blue */
     }
+
+    chdir(cwd);
+    closedir(dirp);
 }
 
 void
