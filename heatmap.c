@@ -21,7 +21,7 @@ main(int argc, char *argv[])
     } else                      /* directory exists */
         closedir(dirp);
 
-    classify_and_print(argv[1], MOST_RECENT);
+    classify_and_print(argv[1], NOW);
 
     return 0;
 }

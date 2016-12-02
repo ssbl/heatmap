@@ -10,6 +10,7 @@
 #define YEAR (365 * DAY)
 
 #define MOST_RECENT 101
+#define NOW 102
 
 void ref_most_recent(const char *dir);
 void classify_and_print(const char *dir, int opt);
