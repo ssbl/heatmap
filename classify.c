@@ -113,7 +113,7 @@ ref_now(const char *dirname)
 }
 
 void
-classify_and_print(const char *dir, int opt)
+classify_and_print(const char *dir, enum comparison_type opt)
 {
     switch(opt) {
     case MOST_RECENT:

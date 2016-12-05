@@ -9,10 +9,12 @@
 #define MONTH (30 * DAY)
 #define YEAR (365 * DAY)
 
-#define MOST_RECENT 101
-#define NOW 102
+enum comparison_type {
+    MOST_RECENT,
+    NOW,
+};
 
 void ref_most_recent(const char *dir);
-void classify_and_print(const char *dir, int opt);
+void classify_and_print(const char *dir, enum comparison_type opt);
 
-#endif /* INCLUDED_CLASSIFY_H */
+#endif /* INCLUDED_CLASSIFY_H
