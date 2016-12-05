@@ -1,8 +1,9 @@
 CC = gcc
 CFLAGS = -Wall
 
-SRCS = heatmap.c \
-	   classify.c
+SRCS = \
+		heatmap.c \
+		classify.c
 OBJS = $(subst .c,.o,$(SRCS))
 
 hm: $(OBJS)
