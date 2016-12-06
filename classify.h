@@ -17,4 +17,4 @@ enum comparison_type {
 void ref_most_recent(const char *dir);
 void classify_and_print(const char *dir, enum comparison_type opt);
 
-#endif /* INCLUDED_CLASSIFY_H
+#endif /* INCLUDED_CLASSIFY_H */
