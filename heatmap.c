@@ -9,9 +9,8 @@
 int
 main(int argc, char *argv[])
 {
-    char *dir;
-    /* DIR *dirp; */
     int opt;
+    char *dir;
     enum comparison_type cmp_type = NOW; /* default to now */
 
     while ((opt = getopt(argc, argv, "n;;r;;")) != -1) {
@@ -28,8 +27,12 @@ main(int argc, char *argv[])
         }
     }
 
-    dir = argv[optind] ? argv[optind] : ".";
-    classify_and_print(dir, cmp_type);
+    if (argc > 2 && opt == -1) {
+        puts("todo");
+    } else {
+        dir = argv[optind] ? argv[optind] : ".";
+        classify_and_print(dir, cmp_type);
+    }
 
     return 0;
 }
