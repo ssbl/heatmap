@@ -13,16 +13,17 @@ main(int argc, char *argv[])
     char *dir;
     enum comparison_type cmp_type = NOW; /* default to now */
 
-    while ((opt = getopt(argc, argv, "n;;r;;")) != -1) {
+    while ((opt = getopt(argc, argv, "n;;m;;l;;")) != -1) {
         switch (opt) {
         case 'n':
             cmp_type = NOW;
             break;
-        case 'r':
+        case 'm':
+        case 'l'
             cmp_type = MOST_RECENT;
             break;
         default:
-            fprintf(stderr, "Usage: ./hm [-nr] [DIR]\n");
+            fprintf(stderr, "Usage: ./hm [-nm] [DIR]\n");
             exit(EXIT_FAILURE);
         }
     }
