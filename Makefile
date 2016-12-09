@@ -11,5 +11,3 @@ hm: $(OBJS)
 
 .c.o:
 	$(CC) -c $(CFLAGS) $< -o $@
-
-.PHONY: hm
