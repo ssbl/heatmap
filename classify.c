@@ -113,6 +113,34 @@ ref_now(const char *dirname)
 }
 
 void
+work_on_args(int count, char *args[])
+{
+    int i;
+    time_t latest, diff;
+    struct stat buf;
+
+    time(&latest);
+    for (i = 1; i < count; i++) {
+        if (stat(args[i], &buf) == -1)
+            continue;
+
+        diff = latest - buf.st_mtime;
+        if (diff < DAY)
+            printf("\e[31m%s\e[39m\n", args[i]); /* red */
+        else if (diff < 3 * DAY)
+            printf("\e[91m%s\e[39m\n", args[i]); /* light red */
+        else if (diff < WEEK)
+            printf("\e[35m%s\e[39m\n", args[i]); /* magenta */
+        else if (diff < MONTH)
+            printf("\e[95m%s\e[39m\n", args[i]); /* light magenta */
+        else if (diff < YEAR)
+            printf("\e[34m%s\e[39m\n", args[i]); /* blue */
+        else
+            printf("\e[94m%s\e[39m\n", args[i]); /* light blue */
+    }
+}
+
+void
 classify_and_print(const char *dir, enum comparison_type opt)
 {
     switch(opt) {

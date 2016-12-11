@@ -29,7 +29,7 @@ main(int argc, char *argv[])
     }
 
     if (argc > 2 && opt == -1) {
-        puts("todo");
+        work_on_args(argc, argv);
     } else {
         dir = argv[optind] ? argv[optind] : ".";
         classify_and_print(dir, cmp_type);
