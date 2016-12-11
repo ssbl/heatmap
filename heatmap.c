@@ -19,7 +19,7 @@ main(int argc, char *argv[])
             cmp_type = NOW;
             break;
         case 'm':
-        case 'l'
+        case 'l':
             cmp_type = MOST_RECENT;
             break;
         default:
