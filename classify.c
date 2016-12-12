@@ -113,13 +113,25 @@ ref_now(const char *dirname)
 }
 
 void
-work_on_args(int count, char *args[])
+work_on_args(int count, char *args[], enum comparison_type opt)
 {
     int i;
-    time_t latest, diff;
+    time_t latest = 0, diff;
     struct stat buf;
 
-    time(&latest);
+    if (opt == NOW) {
+        time(&latest);
+    } else {
+        for (i = 1; i < count; i++) {
+            if (stat(args[i], &buf) == -1)
+                continue;
+
+            if (buf.st_mtime > latest) {
+                latest = buf.st_mtime;
+            }
+        }
+    }
+
     for (i = 1; i < count; i++) {
         if (stat(args[i], &buf) == -1)
             continue;

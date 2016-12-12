@@ -28,8 +28,8 @@ main(int argc, char *argv[])
         }
     }
 
-    if (argc > 2 && opt == -1) {
-        work_on_args(argc, argv);
+    if (argc > 3) {
+        work_on_args(argc, argv, cmp_type);
     } else {
         dir = argv[optind] ? argv[optind] : ".";
         classify_and_print(dir, cmp_type);
