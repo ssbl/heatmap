@@ -23,7 +23,7 @@ main(int argc, char *argv[])
             cmp_type = MOST_RECENT;
             break;
         default:
-            fprintf(stderr, "Usage: ./hm [-nm] [DIR]\n");
+            fprintf(stderr, "Usage: hm [-nm] [DIR]\n");
             exit(EXIT_FAILURE);
         }
     }
