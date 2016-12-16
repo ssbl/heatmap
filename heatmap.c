@@ -1,4 +1,5 @@
 #include <dirent.h>
+#include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -9,11 +10,18 @@
 int
 main(int argc, char *argv[])
 {
-    int opt;
+    int opt, optindex = 0;
     char *dir;
     enum comparison_type cmp_type = NOW; /* default to now */
 
-    while ((opt = getopt(argc, argv, "n;;m;;l;;")) != -1) {
+    struct option options[] = {
+        {"now", no_argument, 0, 'n'},
+        {"most-recent", no_argument, 0, 'm'},
+        {0, 0, 0, 0}
+    };
+
+    while ((opt = getopt_long(argc, argv, "n;;m;;l;;",
+                              options, &optindex)) != -1) {
         switch (opt) {
         case 'n':
             cmp_type = NOW;
